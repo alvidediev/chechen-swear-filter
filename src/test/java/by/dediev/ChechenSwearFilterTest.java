@@ -9,9 +9,21 @@ import org.junit.Test;
 public class ChechenSwearFilterTest {
 
     @Test
-    public void test() {
+    public void test_swear_one_word() {
         ChechenSwearFilter filter = new ChechenSwearFilterImpl();
         Assert.assertTrue(filter.containsSwear("буд"));
+    }
+
+    @Test
+    public void test_swear_word() {
+        ChechenSwearFilter filter = new ChechenSwearFilterImpl();
+        Assert.assertTrue(filter.containsSwear("буд привет как дела"));
+    }
+
+    @Test
+    public void test_no_swear_word() {
+        ChechenSwearFilter filter = new ChechenSwearFilterImpl();
+        Assert.assertFalse(filter.containsSwear("привет как дела"));
     }
 
 }
