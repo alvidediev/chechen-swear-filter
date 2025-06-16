@@ -26,4 +26,28 @@ public class ChechenSwearFilterTest {
         Assert.assertFalse(filter.containsSwear("привет как дела"));
     }
 
+    @Test
+    public void test_censor_one_word() {
+        ChechenSwearFilter filter = new ChechenSwearFilterImpl();
+        Assert.assertEquals("***", filter.censorText("буд"));
+    }
+
+    @Test
+    public void test_censor_word() {
+        ChechenSwearFilter filter = new ChechenSwearFilterImpl();
+        Assert.assertEquals("Привет ***", filter.censorText("Привет буд"));
+    }
+
+    @Test
+    public void test_censor_no_word() {
+        ChechenSwearFilter filter = new ChechenSwearFilterImpl();
+        Assert.assertEquals("Привет. Как дела ?", filter.censorText("Привет. Как дела ?"));
+    }
+
+    @Test
+    public void test_censor_with_another_register() {
+        ChechenSwearFilter filter = new ChechenSwearFilterImpl();
+        Assert.assertEquals("***", filter.censorText("бУд"));
+    }
+
 }

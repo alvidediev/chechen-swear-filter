@@ -43,7 +43,20 @@ public class ChechenSwearFilterImpl implements ChechenSwearFilter {
     }
 
     @Override
-    public String censorTest(String text) {
-        return "";
+    public String censorText(String text) {
+        String[] splitText = text.split("\\s+");
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < splitText.length; i++) {
+            String word = splitText[i].toLowerCase();
+            if (words.contains(word)) {
+                sb.append("*".repeat(word.length()));
+            } else {
+                sb.append(word);
+            }
+            if (i < splitText.length - 1) {
+                sb.append(" ");
+            }
+        }
+        return sb.toString();
     }
 }
